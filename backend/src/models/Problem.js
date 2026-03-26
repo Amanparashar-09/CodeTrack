@@ -12,10 +12,19 @@ const problemSchema = new mongoose.Schema(
       required: true,
       trim: true,
     },
+    difficulty: {
+      type: String,
+      enum: ["Easy", "Medium", "Hard"],
+      default: "Easy",
+    },
     status: {
       type: String,
       enum: ["Unsolved", "Attempted", "Solved"],
       default: "Unsolved",
+    },
+    tags: {
+      type: [String],
+      default: [],
     },
     notes: {
       type: String,
