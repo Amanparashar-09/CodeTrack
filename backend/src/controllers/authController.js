@@ -7,17 +7,24 @@ const registerUser = async (req, res, next) => {
 
     const existingUser = await User.findOne({ email });
     if (existingUser) {
-      res.status(400);
-      throw new Error("User already exists");
+      return res.status(400).json({ message: "User already exists" });
     }
 
     const user = await User.create({ email, password });
+    const token = generateToken(user._id);
 
-    res.status(201).json({
-      id: user._id,
-      email: user.email,
+    return res.status(201).json({
+      user: {
+        id: user._id,
+        email: user.email,
+      },
+      token,
     });
   } catch (error) {
+    if (error.name === "ValidationError") {
+      return res.status(400).json({ message: "Invalid user data" });
+    }
+
     next(error);
   }
 };
@@ -28,21 +35,21 @@ const loginUser = async (req, res, next) => {
 
     const user = await User.findOne({ email });
     if (!user) {
-      res.status(401);
-      throw new Error("Invalid credentials");
+      return res.status(401).json({ message: "Invalid email or password" });
     }
 
     const isMatch = await user.comparePassword(password);
     if (!isMatch) {
-      res.status(401);
-      throw new Error("Invalid credentials");
+      return res.status(401).json({ message: "Invalid email or password" });
     }
 
     const token = generateToken(user._id);
 
-    res.status(200).json({
-      id: user._id,
-      email: user.email,
+    return res.status(200).json({
+      user: {
+        id: user._id,
+        email: user.email,
+      },
       token,
     });
   } catch (error) {
