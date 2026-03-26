@@ -3,6 +3,11 @@ const bcrypt = require("bcryptjs");
 
 const userSchema = new mongoose.Schema(
   {
+    name: {
+      type: String,
+      trim: true,
+      default: "",
+    },
     email: {
       type: String,
       required: true,
@@ -17,6 +22,14 @@ const userSchema = new mongoose.Schema(
     totalPoints: {
       type: Number,
       default: 0,
+    },
+    currentStreak: {
+      type: Number,
+      default: 0,
+    },
+    lastActive: {
+      type: Date,
+      default: null,
     },
   },
   {
