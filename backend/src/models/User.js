@@ -14,6 +14,10 @@ const userSchema = new mongoose.Schema(
       type: String,
       required: true,
     },
+    totalPoints: {
+      type: Number,
+      default: 0,
+    },
   },
   {
     timestamps: true,
