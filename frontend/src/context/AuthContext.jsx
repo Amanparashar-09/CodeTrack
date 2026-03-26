@@ -17,6 +17,8 @@ function authReducer(state, action) {
       return { ...state, loading: false, user: action.payload.user, token: action.payload.token, error: null }
     case 'AUTH_ERROR':
       return { ...state, loading: false, error: action.payload }
+    case 'UPDATE_USER':
+      return { ...state, user: action.payload }
     case 'LOGOUT':
       return { user: null, token: null, loading: false, error: null }
     default:
@@ -28,6 +30,15 @@ const AuthContext = createContext(null)
 
 export function AuthProvider({ children }) {
   const [state, dispatch] = useReducer(authReducer, initialState)
+
+  function normalizeUser(user, fallbackName = '') {
+    const savedUser = JSON.parse(localStorage.getItem('ct_user') || 'null')
+    return {
+      id: user?.id || user?._id || savedUser?.id || savedUser?._id || null,
+      name: user?.name || savedUser?.name || fallbackName || '',
+      email: user?.email || savedUser?.email || '',
+    }
+  }
 
   useEffect(() => {
     if (state.token) {
@@ -44,7 +55,10 @@ export function AuthProvider({ children }) {
     dispatch({ type: 'AUTH_START' })
     try {
       const { data } = await axiosInstance.post('/auth/login', { email, password })
-      dispatch({ type: 'AUTH_SUCCESS', payload: { user: data.user, token: data.token } })
+      dispatch({
+        type: 'AUTH_SUCCESS',
+        payload: { user: normalizeUser(data.user), token: data.token },
+      })
       return { success: true }
     } catch (err) {
       const msg = err.response?.data?.message || 'Login failed. Please try again.'
@@ -57,7 +71,10 @@ export function AuthProvider({ children }) {
     dispatch({ type: 'AUTH_START' })
     try {
       const { data } = await axiosInstance.post('/auth/register', { name, email, password })
-      dispatch({ type: 'AUTH_SUCCESS', payload: { user: data.user, token: data.token } })
+      dispatch({
+        type: 'AUTH_SUCCESS',
+        payload: { user: normalizeUser(data.user, name), token: data.token },
+      })
       return { success: true }
     } catch (err) {
       const msg = err.response?.data?.message || 'Registration failed. Please try again.'
@@ -70,6 +87,10 @@ export function AuthProvider({ children }) {
     dispatch({ type: 'LOGOUT' })
   }
 
+  function updateUser(nextUser) {
+    dispatch({ type: 'UPDATE_USER', payload: nextUser })
+  }
+
   return (
     <AuthContext.Provider
       value={{
@@ -80,6 +101,7 @@ export function AuthProvider({ children }) {
         login,
         register,
         logout,
+        updateUser,
       }}
     >
       {children}
