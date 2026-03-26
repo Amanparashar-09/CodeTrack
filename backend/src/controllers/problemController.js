@@ -44,8 +44,23 @@ const updateProblem = async (req, res, next) => {
   }
 };
 
+const deleteProblem = async (req, res, next) => {
+  try {
+    const problem = await Problem.findByIdAndDelete(req.params.id);
+
+    if (!problem) {
+      return res.status(404).json({ message: "Problem not found" });
+    }
+
+    return res.status(200).json({ message: "Problem deleted" });
+  } catch (error) {
+    next(error);
+  }
+};
+
 module.exports = {
   createProblem,
   getProblems,
   updateProblem,
+  deleteProblem,
 };
