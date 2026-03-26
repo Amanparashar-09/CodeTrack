@@ -5,12 +5,13 @@ const {
 	updateProblem,
 	deleteProblem,
 } = require("../controllers/problemController");
+const { protect } = require("../middleware/authMiddleware");
 
 const router = express.Router();
 
-router.get("/", getProblems);
-router.post("/", createProblem);
-router.put("/:id", updateProblem);
-router.delete("/:id", deleteProblem);
+router.get("/", protect, getProblems);
+router.post("/", protect, createProblem);
+router.put("/:id", protect, updateProblem);
+router.delete("/:id", protect, deleteProblem);
 
 module.exports = router;

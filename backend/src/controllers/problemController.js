@@ -2,12 +2,15 @@ const Problem = require("../models/Problem");
 
 const createProblem = async (req, res, next) => {
   try {
-    const { title, platform, status, notes, solutionLink } = req.body;
+    const { title, platform, difficulty, status, tags, notes, solutionLink } = req.body;
 
     const problem = await Problem.create({
+      user: req.user._id,
       title,
       platform,
+      difficulty,
       status,
+      tags,
       notes,
       solutionLink,
     });
@@ -18,9 +21,9 @@ const createProblem = async (req, res, next) => {
   }
 };
 
-const getProblems = async (_req, res, next) => {
+const getProblems = async (req, res, next) => {
   try {
-    const problems = await Problem.find().sort({ createdAt: -1 });
+    const problems = await Problem.find({ user: req.user._id }).sort({ createdAt: -1 });
     return res.status(200).json({ problems });
   } catch (error) {
     next(error);
@@ -29,10 +32,14 @@ const getProblems = async (_req, res, next) => {
 
 const updateProblem = async (req, res, next) => {
   try {
-    const problem = await Problem.findByIdAndUpdate(req.params.id, req.body, {
-      new: true,
-      runValidators: true,
-    });
+    const problem = await Problem.findOneAndUpdate(
+      { _id: req.params.id, user: req.user._id },
+      req.body,
+      {
+        new: true,
+        runValidators: true,
+      }
+    );
 
     if (!problem) {
       return res.status(404).json({ message: "Problem not found" });
@@ -46,7 +53,10 @@ const updateProblem = async (req, res, next) => {
 
 const deleteProblem = async (req, res, next) => {
   try {
-    const problem = await Problem.findByIdAndDelete(req.params.id);
+    const problem = await Problem.findOneAndDelete({
+      _id: req.params.id,
+      user: req.user._id,
+    });
 
     if (!problem) {
       return res.status(404).json({ message: "Problem not found" });
