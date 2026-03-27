@@ -40,7 +40,51 @@ const getStreakAfterSolve = (lastActive, currentStreak) => {
   return { streak: 1, shouldUpdateLastActive: true };
 };
 
+const buildProgressStats = (problems) => {
+  const byDifficulty = { easy: 0, medium: 0, hard: 0 };
+  const byTag = {};
+
+  let totalAttempted = 0;
+  let totalSolved = 0;
+
+  for (const problem of problems) {
+    const status = problem.status || "Unsolved";
+    const difficulty = problem.difficulty || "Easy";
+
+    if (status !== "Unsolved") {
+      totalAttempted += 1;
+    }
+
+    if (status === "Solved") {
+      totalSolved += 1;
+
+      if (difficulty === "Easy") byDifficulty.easy += 1;
+      if (difficulty === "Medium") byDifficulty.medium += 1;
+      if (difficulty === "Hard") byDifficulty.hard += 1;
+    }
+
+    for (const tag of problem.tags || []) {
+      byTag[tag] = (byTag[tag] || 0) + 1;
+    }
+  }
+
+  const accuracy =
+    totalAttempted > 0 ? Math.round((totalSolved / totalAttempted) * 100) : 0;
+
+  return {
+    easy: byDifficulty.easy,
+    medium: byDifficulty.medium,
+    hard: byDifficulty.hard,
+    byDifficulty,
+    byTag,
+    totalAttempted,
+    totalSolved,
+    accuracy,
+  };
+};
+
 module.exports = {
   getPointsForDifficulty,
   getStreakAfterSolve,
+  buildProgressStats,
 };
