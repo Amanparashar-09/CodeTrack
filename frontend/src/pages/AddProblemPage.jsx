@@ -1,5 +1,5 @@
 ﻿
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { problemsApi } from '../api/problemsApi'
 import toast from 'react-hot-toast'
@@ -20,29 +20,6 @@ export default function AddProblemPage() {
   const [tagInput,setTagInput]= useState('')
   const [errors,  setErrors]  = useState({})
   const [loading, setLoading] = useState(false)
-  const [bankQuestions, setBankQuestions] = useState([])
-  const [selectedQuestion, setSelectedQuestion] = useState('')
-
-  useEffect(() => {
-    let mounted = true
-
-    async function loadPredefined() {
-      try {
-        const { data } = await problemsApi.getPredefined({ limit: 200 })
-        if (!mounted) return
-        setBankQuestions(data?.questions || [])
-      } catch {
-        if (!mounted) return
-        setBankQuestions([])
-      }
-    }
-
-    loadPredefined()
-
-    return () => {
-      mounted = false
-    }
-  }, [])
 
   function validate() {
     const e = {}
@@ -64,7 +41,7 @@ export default function AddProblemPage() {
         title: form.title.trim(),
         tags:  form.tags.map(t => t.trim()).filter(Boolean),
       })
-      toast.success('Problem added successfully.')
+      toast.success('Problem added! ðŸŽ‰')
       navigate('/problems')
     } catch (err) {
       toast.error(err.response?.data?.message || 'Failed to add problem.')
@@ -93,21 +70,6 @@ export default function AddProblemPage() {
     if (e.key === 'Enter' || e.key === ',') { e.preventDefault(); addTag() }
   }
 
-  function applyPredefined(questionId) {
-    setSelectedQuestion(questionId)
-    const selected = bankQuestions.find(q => q._id === questionId)
-    if (!selected) return
-
-    setForm(prev => ({
-      ...prev,
-      title: selected.title || prev.title,
-      platform: selected.platform || prev.platform,
-      difficulty: selected.difficulty || prev.difficulty,
-      tags: Array.isArray(selected.tags) ? selected.tags : prev.tags,
-      solutionLink: selected.url || prev.solutionLink,
-    }))
-  }
-
   return (
     <div className="max-w-2xl mx-auto animate-slide-up">
       <div className="mb-6">
@@ -117,21 +79,6 @@ export default function AddProblemPage() {
 
       <div className="card">
         <form onSubmit={handleSubmit} noValidate className="space-y-5">
-
-          <Field label="Predefined Question (Optional)">
-            <select
-              value={selectedQuestion}
-              onChange={e => applyPredefined(e.target.value)}
-              className="input"
-            >
-              <option value="">Select from question bank...</option>
-              {bankQuestions.map(q => (
-                <option key={q._id} value={q._id}>
-                  {q.title} [{q.platform} | {q.difficulty}]
-                </option>
-              ))}
-            </select>
-          </Field>
 
           <Field label="Problem Title *" error={errors.title}>
             <input
@@ -145,7 +92,7 @@ export default function AddProblemPage() {
             <Field label="Platform *" error={errors.platform}>
               <select name="platform" value={form.platform} onChange={handleChange}
                 className={`input ${errors.platform ? 'border-red-500' : ''}`}>
-                <option value="">Select...</option>
+                <option value="">Selectâ€¦</option>
                 {PLATFORMS.map(p => <option key={p} value={p}>{p}</option>)}
               </select>
             </Field>
@@ -176,7 +123,7 @@ export default function AddProblemPage() {
               <input
                 value={tagInput} onChange={e => setTagInput(e.target.value)}
                 onKeyDown={handleTagKeyDown}
-                placeholder="e.g. Array, DP - press Enter"
+                placeholder="e.g. Array, DP â€” press Enter"
                 className="input"
               />
               <button type="button" onClick={addTag}
@@ -211,7 +158,7 @@ export default function AddProblemPage() {
           <Field label="Notes / Approach">
             <textarea
               name="notes" value={form.notes} onChange={handleChange}
-              rows={4} placeholder="Write your approach, key observations..."
+              rows={4} placeholder="Write your approach, key observationsâ€¦"
               className="input font-mono resize-y"
             />
           </Field>
@@ -222,7 +169,7 @@ export default function AddProblemPage() {
               {loading
                 ? <span className="w-4 h-4 border-2 border-white/40 border-t-white rounded-full animate-spin" />
                 : <FiPlusCircle size={17} />}
-              {loading ? 'Adding...' : 'Add Problem'}
+              {loading ? 'Addingâ€¦' : 'Add Problem'}
             </button>
             <button type="button" onClick={() => navigate('/problems')}
               className="btn-secondary">
