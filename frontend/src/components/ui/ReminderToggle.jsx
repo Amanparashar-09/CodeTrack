@@ -22,8 +22,8 @@ export default function ReminderToggle({ userId }) {
     try {
       await axiosInstance.patch('/users/reminder-pref', { reminderEnabled: next })
       toast.success(next
-        ? 'Daily reminders enabled!'
-        : 'Reminders turned off.')
+        ? 'ðŸ”” Daily reminders enabled!'
+        : 'ðŸ”• Reminders turned off.')
     } catch {
       setEnabled(!next)
       toast.error('Failed to update reminder preference.')

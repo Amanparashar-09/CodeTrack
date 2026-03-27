@@ -33,7 +33,7 @@ export default function BadgesPage() {
           <FiAward className="text-primary-400" /> Badges
         </h1>
         <p className="text-gray-400 mt-1">
-          {loading ? '...' : `${earned.length} earned | ${locked.length} locked`}
+          {loading ? 'â€¦' : `${earned.length} earned Â· ${locked.length} locked`}
         </p>
       </div>
 
@@ -60,7 +60,7 @@ export default function BadgesPage() {
           {earned.length > 0 ? (
             <section>
               <h2 className="text-lg font-semibold text-white mb-4">
-                Earned ({earned.length})
+                ðŸ† Earned ({earned.length})
               </h2>
               <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4">
                 {earned.map(b => <BadgeCard key={b._id} badge={b} />)}
@@ -77,7 +77,7 @@ export default function BadgesPage() {
           {locked.length > 0 && (
             <section>
               <h2 className="text-lg font-semibold text-white mb-4">
-                Locked ({locked.length})
+                ðŸ”’ Locked ({locked.length})
               </h2>
               <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4">
                 {locked.map(b => <BadgeCard key={b._id} badge={b} />)}
