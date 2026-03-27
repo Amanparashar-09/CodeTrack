@@ -1,6 +1,8 @@
 const User = require("../models/User");
 const Problem = require("../models/Problem");
+const Badge = require("../models/Badge");
 const { buildProgressStats } = require("../utils/progressCalculator");
+const { getEarnedBadgeKeys } = require("../utils/badgeService");
 
 const getUserProfile = async (req, res, next) => {
   try {
@@ -67,8 +69,37 @@ const getUserStats = async (req, res, next) => {
   }
 };
 
+const getUserBadges = async (req, res, next) => {
+  try {
+    const [problems, user, allBadges] = await Promise.all([
+      Problem.find({ user: req.user._id }).select("status difficulty").lean(),
+      User.findById(req.user._id).select("currentStreak totalPoints").lean(),
+      Badge.find({}).lean(),
+    ]);
+
+    const progress = buildProgressStats(problems);
+    const earnedKeys = new Set(
+      getEarnedBadgeKeys({
+        totalSolved: progress.totalSolved,
+        streak: user?.currentStreak || 0,
+        totalPoints: user?.totalPoints || 0,
+      })
+    );
+
+    const badges = allBadges.map((badge) => ({
+      ...badge,
+      earned: earnedKeys.has(badge.key),
+    }));
+
+    return res.status(200).json(badges);
+  } catch (error) {
+    next(error);
+  }
+};
+
 module.exports = {
   getUserProfile,
   updateUserProfile,
   getUserStats,
+  getUserBadges,
 };
