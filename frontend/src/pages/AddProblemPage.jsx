@@ -41,7 +41,7 @@ export default function AddProblemPage() {
         title: form.title.trim(),
         tags:  form.tags.map(t => t.trim()).filter(Boolean),
       })
-      toast.success('Problem added! ðŸŽ‰')
+      toast.success('Problem added successfully!')
       navigate('/problems')
     } catch (err) {
       toast.error(err.response?.data?.message || 'Failed to add problem.')

@@ -87,7 +87,7 @@ export default function DashboardPage() {
 
       <div>
         <h1 className="text-3xl font-bold text-white">
-          Welcome back, <span className="text-gradient">{user?.name?.split(' ')[0] || 'Coder'}</span> ðŸ‘‹
+          Welcome back, <span className="text-gradient">{user?.name?.split(' ')[0] || 'Coder'}</span>!
         </h1>
         <p className="text-gray-400 mt-1">Here's your coding progress at a glance.</p>
       </div>
@@ -98,12 +98,12 @@ export default function DashboardPage() {
           value={totalSolved}
           icon={<FiCheckCircle size={22} />}
           color="primary"
-          change={`Easy: ${stats?.easy ?? 0} Â· Med: ${stats?.medium ?? 0} Â· Hard: ${stats?.hard ?? 0}`}
+          change={`Easy: ${stats?.easy ?? 0} | Med: ${stats?.medium ?? 0} | Hard: ${stats?.hard ?? 0}`}
           loading={loading}
         />
         <StatsCard
           title="Current Streak"
-          value={`${streak} ðŸ”¥`}
+          value={`${streak} days`}
           icon={<FiZap size={22} />}
           color="yellow"
           change={streak > 0 ? 'Keep it going!' : 'Start today!'}

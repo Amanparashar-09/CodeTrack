@@ -32,7 +32,7 @@ export default function LoginPage() {
 
     const result = await login(form.email, form.password)
     if (result.success) {
-      toast.success('Welcome back! ðŸŽ‰')
+      toast.success('Welcome back!')
       navigate(from, { replace: true })
     } else {
       toast.error(result.error)
