@@ -131,7 +131,7 @@ export default function DashboardPage() {
         <div className="lg:col-span-2">
           <ActivityLineChart weeklyData={weekly} />
         </div>
-        <DifficultyBarChart stats={stats?.byDifficulty ?? stats ?? {}} />
+        <DifficultyBarChart stats={stats?.byDifficulty ?? {}} />
       </div>
 
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">

@@ -8,10 +8,9 @@ import { Bar } from 'react-chartjs-2'
 
 ChartJS.register(CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend)
 
-export default function DifficultyBarChart({ stats = {} }) {
-  const safeStats = stats ?? {}
+export default function DifficultyBarChart({ stats = null }) {
   const labels = ['Easy', 'Medium', 'Hard']
-  const values = [safeStats.easy || 0, safeStats.medium || 0, safeStats.hard || 0]
+  const values = [stats?.easy ?? 0, stats?.medium ?? 0, stats?.hard ?? 0]
 
   const data = {
     labels,
