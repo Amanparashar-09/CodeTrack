@@ -18,7 +18,7 @@ const FEATURES = [
   {
     icon: <FiAward size={24} />,
     title: 'Earn Badges',
-    desc:  'Unlock achievement badges as you hit milestones - stay motivated every day.',
+    desc:  'Unlock achievement badges as you hit milestones â€” stay motivated every day.',
     color: 'text-yellow-400 bg-yellow-500/10',
   },
   {
@@ -48,7 +48,7 @@ export default function LandingPage() {
 
       <section className="relative text-center px-6 py-24 max-w-4xl mx-auto">
         <span className="badge bg-primary-900/60 text-primary-400 mb-6 inline-block">
-          Your personal coding companion
+          ðŸš€ Your personal coding companion
         </span>
         <h1 className="text-5xl md:text-6xl font-extrabold leading-tight">
           Track your{' '}
@@ -56,7 +56,7 @@ export default function LandingPage() {
           <br />like a pro
         </h1>
         <p className="text-gray-400 text-lg mt-6 max-w-2xl mx-auto leading-relaxed">
-          Log problems, visualise streaks, earn badges and get daily reminders -
+          Log problems, visualise streaks, earn badges and get daily reminders â€”
           all in one beautiful dashboard built for competitive programmers.
         </p>
         <div className="flex flex-col sm:flex-row gap-4 justify-center mt-10">
@@ -97,7 +97,7 @@ export default function LandingPage() {
       </section>
 
       <footer className="text-center text-gray-600 text-sm pb-8">
-        &copy; {new Date().getFullYear()} CodoTrack - Built with care by Member 4
+        &copy; {new Date().getFullYear()} CodoTrack â€” Built with â¤ï¸ by Member 4
       </footer>
     </div>
   )

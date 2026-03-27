@@ -5,14 +5,14 @@ import { FiAlertTriangle, FiX } from 'react-icons/fi'
 /**
  * Reusable confirm modal.
  * Props:
- *   isOpen       - bool
- *   onClose      - fn
- *   onConfirm    - async fn
- *   title        - string
- *   message      - string
- *   confirmLabel - string (default: "Confirm")
- *   confirmClass - Tailwind classes for confirm button
- *   loading      - bool
+ *   isOpen       â€” bool
+ *   onClose      â€” fn
+ *   onConfirm    â€” async fn
+ *   title        â€” string
+ *   message      â€” string
+ *   confirmLabel â€” string (default: "Confirm")
+ *   confirmClass â€” Tailwind classes for confirm button
+ *   loading      â€” bool
  */
 export default function Modal({
   isOpen, onClose, onConfirm,
