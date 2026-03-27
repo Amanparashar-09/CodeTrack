@@ -1,4 +1,4 @@
-const { Problem, User } = require("../models");
+const { Problem, User, QuestionBank } = require("../models");
 const {
   getPointsForDifficulty,
   getStreakAfterSolve,
@@ -52,6 +52,57 @@ const getProblems = async (req, res, next) => {
   try {
     const problems = await Problem.find({ user: req.user._id }).sort({ createdAt: -1 });
     return res.status(200).json({ problems });
+  } catch (error) {
+    next(error);
+  }
+};
+
+const getProblemById = async (req, res, next) => {
+  try {
+    const problem = await Problem.findOne({
+      _id: req.params.id,
+      user: req.user._id,
+    });
+
+    if (!problem) {
+      return res.status(404).json({ message: "Problem not found" });
+    }
+
+    return res.status(200).json(problem);
+  } catch (error) {
+    next(error);
+  }
+};
+
+const getPredefinedQuestions = async (req, res, next) => {
+  try {
+    const { difficulty, tag, platform, search, limit = 100 } = req.query;
+    const filters = { isPredefined: true };
+
+    if (difficulty) {
+      filters.difficulty = difficulty;
+    }
+
+    if (platform) {
+      filters.platform = platform;
+    }
+
+    if (tag) {
+      filters.tags = { $in: [tag] };
+    }
+
+    if (search) {
+      filters.title = { $regex: search, $options: "i" };
+    }
+
+    const safeLimit = Math.min(Number(limit) || 100, 500);
+
+    const questions = await QuestionBank.find(filters)
+      .sort({ title: 1 })
+      .limit(safeLimit)
+      .lean();
+
+    return res.status(200).json({ questions, count: questions.length });
   } catch (error) {
     next(error);
   }
@@ -141,6 +192,8 @@ const deleteProblem = async (req, res, next) => {
 module.exports = {
   createProblem,
   getProblems,
+  getProblemById,
+  getPredefinedQuestions,
   getProblemStats,
   updateProblem,
   deleteProblem,

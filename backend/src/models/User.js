@@ -37,6 +37,10 @@ const userSchema = new mongoose.Schema(
         ref: "Badge",
       },
     ],
+    reminderEnabled: {
+      type: Boolean,
+      default: false,
+    },
   },
   {
     timestamps: true,

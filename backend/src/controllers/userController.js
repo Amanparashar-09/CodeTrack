@@ -67,6 +67,46 @@ const getUserStats = async (req, res, next) => {
   }
 };
 
+const getReminderPreference = async (req, res, next) => {
+  try {
+    const user = await User.findById(req.user._id).select("reminderEnabled").lean();
+
+    if (!user) {
+      return res.status(404).json({ message: "User not found" });
+    }
+
+    return res.status(200).json({ reminderEnabled: Boolean(user.reminderEnabled) });
+  } catch (error) {
+    next(error);
+  }
+};
+
+const updateReminderPreference = async (req, res, next) => {
+  try {
+    const { reminderEnabled } = req.body;
+
+    if (typeof reminderEnabled !== "boolean") {
+      return res.status(400).json({ message: "reminderEnabled must be a boolean" });
+    }
+
+    const user = await User.findByIdAndUpdate(
+      req.user._id,
+      { reminderEnabled },
+      { returnDocument: "after", runValidators: true }
+    )
+      .select("reminderEnabled")
+      .lean();
+
+    if (!user) {
+      return res.status(404).json({ message: "User not found" });
+    }
+
+    return res.status(200).json({ reminderEnabled: Boolean(user.reminderEnabled) });
+  } catch (error) {
+    next(error);
+  }
+};
+
 const getUserBadges = async (req, res, next) => {
   try {
     const [problems, user, allBadges] = await Promise.all([
@@ -100,4 +140,6 @@ module.exports = {
   updateUserProfile,
   getUserStats,
   getUserBadges,
+  getReminderPreference,
+  updateReminderPreference,
 };
