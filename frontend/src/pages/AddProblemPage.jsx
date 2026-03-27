@@ -41,7 +41,7 @@ export default function AddProblemPage() {
         title: form.title.trim(),
         tags:  form.tags.map(t => t.trim()).filter(Boolean),
       })
-      toast.success('Problem added! ðŸŽ‰')
+      toast.success('Problem added successfully!')
       navigate('/problems')
     } catch (err) {
       toast.error(err.response?.data?.message || 'Failed to add problem.')
@@ -92,7 +92,7 @@ export default function AddProblemPage() {
             <Field label="Platform *" error={errors.platform}>
               <select name="platform" value={form.platform} onChange={handleChange}
                 className={`input ${errors.platform ? 'border-red-500' : ''}`}>
-                <option value="">Selectâ€¦</option>
+                <option value="">Select...</option>
                 {PLATFORMS.map(p => <option key={p} value={p}>{p}</option>)}
               </select>
             </Field>
@@ -123,7 +123,7 @@ export default function AddProblemPage() {
               <input
                 value={tagInput} onChange={e => setTagInput(e.target.value)}
                 onKeyDown={handleTagKeyDown}
-                placeholder="e.g. Array, DP â€” press Enter"
+                placeholder="e.g. Array, DP - press Enter"
                 className="input"
               />
               <button type="button" onClick={addTag}
@@ -158,7 +158,7 @@ export default function AddProblemPage() {
           <Field label="Notes / Approach">
             <textarea
               name="notes" value={form.notes} onChange={handleChange}
-              rows={4} placeholder="Write your approach, key observationsâ€¦"
+              rows={4} placeholder="Write your approach, key observations..."
               className="input font-mono resize-y"
             />
           </Field>
@@ -169,7 +169,7 @@ export default function AddProblemPage() {
               {loading
                 ? <span className="w-4 h-4 border-2 border-white/40 border-t-white rounded-full animate-spin" />
                 : <FiPlusCircle size={17} />}
-              {loading ? 'Addingâ€¦' : 'Add Problem'}
+              {loading ? 'Adding...' : 'Add Problem'}
             </button>
             <button type="button" onClick={() => navigate('/problems')}
               className="btn-secondary">
