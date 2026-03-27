@@ -1,6 +1,6 @@
 const Problem = require("../models/Problem");
 const User = require("../models/User");
-const { getPointsForDifficulty } = require("../utils/progressCalculator");
+const { getPointsForDifficulty, getStreakAfterSolve } = require("../utils/progressCalculator");
 
 const createProblem = async (req, res, next) => {
   try {
@@ -16,6 +16,28 @@ const createProblem = async (req, res, next) => {
       notes,
       solutionLink,
     });
+
+    if (problem.status === "Solved") {
+      const user = await User.findById(req.user._id).select("currentStreak lastActive");
+      if (user) {
+        const points = getPointsForDifficulty(problem.difficulty);
+        const { streak, shouldUpdateLastActive } = getStreakAfterSolve(
+          user.lastActive,
+          user.currentStreak
+        );
+
+        const updates = {
+          $inc: { totalPoints: points },
+          $set: { currentStreak: streak },
+        };
+
+        if (shouldUpdateLastActive) {
+          updates.$set.lastActive = new Date();
+        }
+
+        await User.findByIdAndUpdate(req.user._id, updates);
+      }
+    }
 
     return res.status(201).json(problem);
   } catch (error) {
@@ -107,7 +129,24 @@ const updateProblem = async (req, res, next) => {
     const isSolved = problem.status === "Solved";
     if (!wasSolved && isSolved) {
       const points = getPointsForDifficulty(problem.difficulty);
-      await User.findByIdAndUpdate(req.user._id, { $inc: { totalPoints: points } });
+      const user = await User.findById(req.user._id).select("currentStreak lastActive");
+      if (user) {
+        const { streak, shouldUpdateLastActive } = getStreakAfterSolve(
+          user.lastActive,
+          user.currentStreak
+        );
+
+        const updates = {
+          $inc: { totalPoints: points },
+          $set: { currentStreak: streak },
+        };
+
+        if (shouldUpdateLastActive) {
+          updates.$set.lastActive = new Date();
+        }
+
+        await User.findByIdAndUpdate(req.user._id, updates);
+      }
     }
 
     return res.status(200).json(problem);
