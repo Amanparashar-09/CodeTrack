@@ -25,7 +25,7 @@ export default function Sidebar() {
 
   function handleLogout() {
     logout()
-    toast.success('See you next time! ðŸ‘‹')
+    toast.success('See you next time!')
     navigate('/login')
   }
 

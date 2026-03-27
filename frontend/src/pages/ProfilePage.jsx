@@ -8,7 +8,7 @@ import toast from 'react-hot-toast'
 import { FiEdit2, FiSave, FiX, FiUser, FiMail, FiCode } from 'react-icons/fi'
 
 export default function ProfilePage() {
-  const { user, logout } = useAuth()
+  const { user, logout, updateUser } = useAuth()
 
   const [profile,  setProfile]  = useState(null)
   const [stats,    setStats]    = useState(null)
@@ -43,6 +43,7 @@ export default function ProfilePage() {
     try {
       const { data } = await profileApi.update({ name: form.name.trim() })
       setProfile(data)
+      updateUser({ ...(user || {}), ...data })
       setEditMode(false)
       toast.success('Profile updated!')
     } catch {
@@ -61,7 +62,7 @@ export default function ProfilePage() {
     { label: 'Easy',     value: stats?.easy    || 0 },
     { label: 'Medium',   value: stats?.medium  || 0 },
     { label: 'Hard',     value: stats?.hard    || 0 },
-    { label: 'Streak ðŸ”¥',value: stats?.currentStreak || 0 },
+    { label: 'Streak', value: stats?.currentStreak || 0 },
     { label: 'Points',   value: stats?.totalPoints   || 0 },
   ]
 
@@ -149,7 +150,7 @@ export default function ProfilePage() {
       <div className="card border-red-900/40">
         <h2 className="text-lg font-semibold text-red-400 mb-3">Danger Zone</h2>
         <button
-          onClick={() => { logout(); toast.success('See you next time! ðŸ‘‹') }}
+          onClick={() => { logout(); toast.success('See you next time!') }}
           className="bg-red-600/20 hover:bg-red-600/30 border border-red-700/40
                      text-red-400 font-medium px-5 py-2.5 rounded-xl text-sm transition-all"
         >

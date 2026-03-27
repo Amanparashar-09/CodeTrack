@@ -48,7 +48,7 @@ export default function LandingPage() {
 
       <section className="relative text-center px-6 py-24 max-w-4xl mx-auto">
         <span className="badge bg-primary-900/60 text-primary-400 mb-6 inline-block">
-          ðŸš€ Your personal coding companion
+          Your personal coding companion
         </span>
         <h1 className="text-5xl md:text-6xl font-extrabold leading-tight">
           Track your{' '}

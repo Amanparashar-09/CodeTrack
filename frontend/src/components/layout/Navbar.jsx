@@ -20,10 +20,11 @@ export default function Navbar() {
   const { user, logout } = useAuth()
   const navigate         = useNavigate()
   const [open, setOpen]  = useState(false)
+  const displayName = user?.name || user?.email?.split('@')[0] || 'Coder'
 
   function handleLogout() {
     logout()
-    toast.success('See you next time! ðŸ‘‹')
+    toast.success('See you next time!')
     navigate('/login')
   }
 
@@ -52,7 +53,7 @@ export default function Navbar() {
           </div>
 
           <div className="hidden md:flex items-center gap-3">
-            <span className="text-gray-400 text-sm">Hi, {user?.name?.split(' ')[0] || 'Coder'} ðŸ‘‹</span>
+            <span className="text-gray-400 text-sm">Hi, {displayName.split(' ')[0]}</span>
             <button
               onClick={handleLogout}
               className="flex items-center gap-1.5 text-gray-400 hover:text-red-400

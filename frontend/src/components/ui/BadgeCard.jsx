@@ -19,7 +19,7 @@ export default function BadgeCard({ badge }) {
         className={`w-16 h-16 rounded-2xl flex items-center justify-center text-3xl
           ${earned ? 'bg-primary-600/20 ring-1 ring-primary-500/40' : 'bg-gray-800'}`}
       >
-        {earned ? (icon || 'ðŸ†') : <FiLock size={28} className="text-gray-600" />}
+        {earned ? (icon || '⭐') : <FiLock size={28} className="text-gray-600" />}
       </div>
 
       <h3 className={`font-semibold text-sm ${earned ? 'text-white' : 'text-gray-500'}`}>
