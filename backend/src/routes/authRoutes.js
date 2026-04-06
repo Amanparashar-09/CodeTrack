@@ -4,10 +4,11 @@ const {
 	validateRegisterInput,
 	validateLoginInput,
 } = require("../middleware/validateInput");
+const { loginLimiter, registerLimiter } = require("../middleware/rateLimiter");
 
 const router = express.Router();
 
-router.post("/register", validateRegisterInput, registerUser);
-router.post("/login", validateLoginInput, loginUser);
+router.post("/register", registerLimiter, validateRegisterInput, registerUser);
+router.post("/login", loginLimiter, validateLoginInput, loginUser);
 
 module.exports = router;
