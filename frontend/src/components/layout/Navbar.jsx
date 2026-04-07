@@ -5,15 +5,16 @@ import { useAuth } from '../../context/AuthContext'
 import toast from 'react-hot-toast'
 import {
   FiCode, FiHome, FiList, FiPlusCircle,
-  FiUser, FiAward, FiLogOut, FiMenu, FiX,
+  FiUser, FiAward, FiLogOut, FiMenu, FiX, FiBook,
 } from 'react-icons/fi'
 
 const navLinks = [
-  { to: '/dashboard',   label: 'Dashboard',  icon: <FiHome size={18} /> },
-  { to: '/problems',    label: 'Problems',   icon: <FiList size={18} /> },
-  { to: '/add-problem', label: 'Add Problem',icon: <FiPlusCircle size={18} /> },
-  { to: '/badges',      label: 'Badges',     icon: <FiAward size={18} /> },
-  { to: '/profile',     label: 'Profile',    icon: <FiUser size={18} /> },
+  { to: '/dashboard',     label: 'Dashboard',     icon: <FiHome size={18} /> },
+  { to: '/problems',      label: 'Problems',      icon: <FiList size={18} /> },
+  { to: '/question-bank', label: 'Question Bank', icon: <FiBook size={18} /> },
+  { to: '/add-problem',   label: 'Add Problem',   icon: <FiPlusCircle size={18} /> },
+  { to: '/badges',        label: 'Badges',        icon: <FiAward size={18} /> },
+  { to: '/profile',       label: 'Profile',       icon: <FiUser size={18} /> },
 ]
 
 export default function Navbar() {
