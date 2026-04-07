@@ -4,6 +4,7 @@ export const problemsApi = {
   getAll:    (params)  => axiosInstance.get('/problems', { params }),
   getById:   (id)      => axiosInstance.get(`/problems/${id}`),
   getPredefined: (params) => axiosInstance.get('/problems/predefined', { params }),
+  getByPlatform: (params) => axiosInstance.get('/problems/browse', { params }),
   create:    (payload) => axiosInstance.post('/problems', payload),
   update:    (id, payload) => axiosInstance.put(`/problems/${id}`, payload),
   remove:    (id)      => axiosInstance.delete(`/problems/${id}`),
