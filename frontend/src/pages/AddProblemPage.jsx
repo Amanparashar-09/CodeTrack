@@ -2,6 +2,7 @@
 import { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { problemsApi } from '../api/problemsApi'
+import BrowseQuestionsByPlatform from '../components/ui/BrowseQuestionsByPlatform'
 import toast from 'react-hot-toast'
 import { FiPlusCircle, FiX } from 'react-icons/fi'
 
@@ -109,14 +110,21 @@ export default function AddProblemPage() {
   }
 
   return (
-    <div className="max-w-2xl mx-auto animate-slide-up">
-      <div className="mb-6">
-        <h1 className="text-3xl font-bold text-white">Add Problem</h1>
-        <p className="text-gray-400 mt-1">Log a new coding problem to your tracker.</p>
+    <div className="animate-slide-up">
+      <div className="max-w-2xl mx-auto mb-8">
+        <div className="mb-6">
+          <h1 className="text-3xl font-bold text-white">Add Problem</h1>
+          <p className="text-gray-400 mt-1">Log a new coding problem to your tracker.</p>
+        </div>
       </div>
 
-      <div className="card">
-        <form onSubmit={handleSubmit} noValidate className="space-y-5">
+      <div className="mb-12">
+        <BrowseQuestionsByPlatform />
+      </div>
+
+      <div className="max-w-2xl mx-auto">
+        <div className="card">
+          <form onSubmit={handleSubmit} noValidate className="space-y-5">
 
           <Field label="Predefined Question (Optional)">
             <select
@@ -230,6 +238,7 @@ export default function AddProblemPage() {
             </button>
           </div>
         </form>
+        </div>
       </div>
     </div>
   )
