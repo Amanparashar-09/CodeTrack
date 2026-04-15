@@ -216,7 +216,7 @@ const getQuestionsByPlatform = async (req, res, next) => {
       return res.status(400).json({ message: "Platform is required" });
     }
 
-    const filters = { isPredefined: true, platform };
+    const filters = { platform };
 
     if (difficulty) {
       filters.difficulty = difficulty;
