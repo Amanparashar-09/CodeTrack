@@ -96,7 +96,7 @@ const getProblemById = async (req, res, next) => {
 const getPredefinedQuestions = async (req, res, next) => {
   try {
     const { difficulty, tag, platform, search, limit = 100 } = req.query;
-    const filters = { isPredefined: true };
+    const filters = {};
 
     if (difficulty) {
       filters.difficulty = difficulty;
