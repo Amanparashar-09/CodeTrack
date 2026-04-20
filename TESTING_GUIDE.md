@@ -33,6 +33,7 @@ Test cases should be structured clearly:
 ## Test Execution
 - Tests should be executed in a controlled environment.
 - Record the test results and compare them against expected results.
+- Re-run critical regression scenarios after fixes are applied.
 
 ## Reporting Bugs
 When bugs are found, report them using the following structure:
