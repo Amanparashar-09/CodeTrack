@@ -2,6 +2,7 @@
   "name": "codetrack-backend",
   "version": "1.0.0",
   "description": "Backend API for CodeTrack application",
+  "author": "CodeTrack Team",
   "keywords": ["nodejs", "express", "mongodb", "api"],
   "main": "src/server.js",
   "scripts": {
