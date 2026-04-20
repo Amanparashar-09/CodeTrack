@@ -15,6 +15,7 @@ Thank you for your interest in contributing to CodeTrack!
 - Follow existing code style
 - Use meaningful commit messages
 - Keep changes focused and small
+- Include a concise PR description that explains scope and testing
 
 ## Development Setup
 
