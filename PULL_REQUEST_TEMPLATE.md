@@ -13,12 +13,13 @@ This pull request introduces a comprehensive **Question Bank** feature that allo
 
 #### Frontend Changes
 
-* **BrowseQuestionsByPlatform Component**: A full-featured question browser with filtering and sorting capabilities
-* **QuestionBankPage**: Dedicated page for accessing the Question Bank
-* **Multi-Platform Browsing**: Option to view all platforms together or filter by a specific platform
-* **Advanced Filtering**: Includes difficulty, tag-based, and text search filters
-* **Sorting Options**: Sort questions by newest, oldest, or alphabetical order
-* **API Integration**: Added `getByPlatform` method in `problemsApi`
+* **BrowseQuestionsByPlatform Component**: A complete question browsing interface with support for filtering and sorting
+* **QuestionBankPage**: A dedicated page designed specifically for accessing the Question Bank
+* **Multi-Platform Browsing**: Allows users to view questions from all platforms or filter by a selected platform
+* **Advanced Filtering**: Supports filtering by difficulty, tags, and text-based search
+* **Sorting Options**: Enables sorting by newest, oldest, or alphabetical order
+* **API Integration**: Introduced the `getByPlatform` method in `problemsApi`
+
 
 #### User Interface
 
