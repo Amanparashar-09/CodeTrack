@@ -3,6 +3,7 @@
   "private": true,
   "version": "1.0.0",
   "type": "module",
+  "author": "CodeTrack Team",
   "keywords": ["react", "vite", "frontend"],
   "scripts": {
     "dev": "vite",
