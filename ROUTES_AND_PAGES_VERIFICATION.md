@@ -1,6 +1,6 @@
 # CodeTrack - Routes & Pages Verification
 
-## ✅ Environment Configuration
+## Environment Configuration
 
 ### Setup Complete
 - [x] `.gitignore` created - .env files are now properly ignored from git tracking
