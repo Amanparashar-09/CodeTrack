@@ -4,6 +4,8 @@ Coding practice tracker with React frontend and Node.js + Express + MongoDB back
 
 ![Version](https://img.shields.io/badge/version-1.0.0-blue)
 ![License](https://img.shields.io/badge/license-MIT-green)
+![Node.js](https://img.shields.io/badge/Node.js-18+-green)
+![React](https://img.shields.io/badge/React-18+-blue)
 
 ## Current Status (Backend Branch)
 
