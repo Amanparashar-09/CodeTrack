@@ -11,3 +11,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Initial project setup
 - Backend API with authentication and problems management
 - Frontend with React and Vite
+- Documentation files (README, CHANGELOG, CONTRIBUTING)
+
+### Changed
+- Updated package descriptions and added keywords
