@@ -1,3 +1,4 @@
+// Tailwind CSS configuration for CodeTrack frontend
 /** @type {import('tailwindcss').Config} */
 export default {
   content: [
