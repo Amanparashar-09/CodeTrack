@@ -28,3 +28,4 @@ Non-functional documentation-only maintenance entries.
 - Entry 24: documentation housekeeping note.
 - Entry 25: documentation housekeeping note.
 - Entry 26: documentation housekeeping note.
+- Entry 27: documentation housekeeping note.
