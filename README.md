@@ -7,7 +7,7 @@ Coding practice tracker with React frontend and Node.js + Express + MongoDB back
 ![Node.js](https://img.shields.io/badge/Node.js-18+-green)
 ![React](https://img.shields.io/badge/React-18+-blue)
 
-## Current Status (Backend Branch)
+## Current Project Status
 
 This README reflects work implemented so far on the backend branch.
 
