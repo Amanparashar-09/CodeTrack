@@ -128,11 +128,12 @@ Backend (.env):
 - SMTP_PASS
 - FRONTEND_URL
 
-Frontend (.env):
+Frontend (.env) variables:
 
 - VITE_API_BASE_URL (default expected: http://localhost:5000/api)
 - VITE_APP_NAME
 - VITE_APP_VERSION
+
 
 ## Run Locally
 
