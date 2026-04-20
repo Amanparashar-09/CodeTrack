@@ -38,6 +38,7 @@ Test cases should be structured clearly:
 When bugs are found, report them using the following structure:
 - **Bug ID**: Unique identifier for the bug.
 - **Summary**: Brief description of the issue.
+- **Severity**: Low/Medium/High/Critical.
 - **Environment**: Information about the environment where the bug was found.
 - **Steps to Reproduce**: Instructions on how to replicate the issue.
 - **Expected Result**: What was expected to happen.
