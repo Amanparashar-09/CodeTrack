@@ -70,6 +70,9 @@ To run the project locally, follow the setup instructions in the respective dire
 ## Changelog
 
 See [CHANGELOG.md](CHANGELOG.md) for recent updates.
+
+### Additional Endpoints Needed for Full Frontend Coverage
+
 - GET /api/users/profile
 - PUT /api/users/profile
 - GET /api/users/reminder-pref
