@@ -1,18 +1,17 @@
-﻿
-import { Routes, Route, Navigate } from 'react-router-dom'
+﻿import { Routes, Route, Navigate } from 'react-router-dom'
 import { useAuth } from './context/AuthContext'
 
-import LandingPage       from './pages/LandingPage'
-import LoginPage        from './pages/auth/LoginPage'
-import RegisterPage     from './pages/auth/RegisterPage'
-import DashboardPage    from './pages/DashboardPage'
-import ProblemsPage     from './pages/ProblemsPage'
-import AddProblemPage   from './pages/AddProblemPage'
+import LandingPage from './pages/LandingPage'
+import LoginPage from './pages/auth/LoginPage'
+import RegisterPage from './pages/auth/RegisterPage'
+import DashboardPage from './pages/DashboardPage'
+import ProblemsPage from './pages/ProblemsPage'
+import AddProblemPage from './pages/AddProblemPage'
 import QuestionBankPage from './pages/QuestionBankPage'
-import ProfilePage      from './pages/ProfilePage'
-import BadgesPage       from './pages/BadgesPage'
-import NotFoundPage     from './pages/NotFoundPage'
-import Layout           from './components/layout/Layout'
+import ProfilePage from './pages/ProfilePage'
+import BadgesPage from './pages/BadgesPage'
+import NotFoundPage from './pages/NotFoundPage'
+import Layout from './components/layout/Layout'
 
 /**
  * Wraps authenticated routes. If no JWT token is found in
