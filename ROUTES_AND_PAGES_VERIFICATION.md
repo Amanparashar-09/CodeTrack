@@ -167,4 +167,4 @@ npm run dev
 * The project is fully prepared for team collaboration
 
 
-**Status:** Ready for deployment! 🚀
+**Status:** Ready for deployment.
