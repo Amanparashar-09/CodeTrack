@@ -153,10 +153,4 @@ npm install
 npm run dev
 ```
 
-## Next Backend Work (for full frontend support)
 
-- Add stats endpoint for dashboard data aggregation
-- Add user profile read/update endpoints
-- Add reminder preference read/update endpoints
-- Add badges endpoint
-- Add problem by id endpoint
