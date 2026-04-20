@@ -22,4 +22,5 @@ community include:
 ## Enforcement
 
 Instances of abusive, harassing, or otherwise unacceptable behavior may be
-reported to the community leaders responsible for enforcement.
+reported to the community leaders responsible for enforcement via repository
+maintainer contact channels.
