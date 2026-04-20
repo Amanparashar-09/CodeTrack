@@ -59,7 +59,9 @@ The **Question Bank** feature enables users to explore and filter coding problem
 - Hover effects and smooth transitions
 
 ## Performance Considerations
-- Lazy loading of questions when platform changes
-- Tag extraction happens on data fetch, not re-render
-- Aggregation for "All" platform uses sequential calls to avoid race conditions
-- Default platform set to "All" for immediate data display
+
+* Questions are loaded lazily whenever the selected platform changes
+* Tags are extracted during data fetching instead of on every re-render
+* The "All" platform aggregates data using sequential API calls to prevent race conditions
+* The default platform is set to "All" to ensure immediate data visibility
+
