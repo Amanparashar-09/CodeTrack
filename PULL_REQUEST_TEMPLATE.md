@@ -1,6 +1,8 @@
 ## Description
 
 This pull request introduces a comprehensive **Question Bank** feature that allows users to browse and filter coding problems from multiple platforms without needing to add their own problems beforehand.
+It also lays the foundation for future enhancements such as personalized recommendations and progress tracking based on user activity.  
+This ensures the platform can scale further while continuously improving the learning experience.
 
 ### Features Added
 
