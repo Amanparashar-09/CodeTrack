@@ -5,6 +5,7 @@ export default {
     "./index.html",
     "./src/**/*.{js,ts,jsx,tsx}",
   ],
+  // adding different color.
   theme: {
     extend: {
       colors: {
@@ -28,6 +29,7 @@ export default {
         sans: ['Inter', 'ui-sans-serif', 'system-ui'],
         mono: ['Fira Code', 'ui-monospace', 'monospace'],
       },
+      // adding keyframes and animation. for  motions.
       animation: {
         'fade-in':     'fadeIn 0.3s ease-in-out',
         'slide-up':    'slideUp 0.4s ease-out',
